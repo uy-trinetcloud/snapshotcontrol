@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no" />
+        <meta http-equiv="content" content="text/html; charset=UTF-8" />
+        <title>SnapShotControl 2.0: Simple Example</title>
+        <!--
+        <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+        -->
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry">
+        </script>
+        <script type="text/javascript">
+            document.write('<script type="text/javascript" src="../src/snapshotcontrol' + (document.location.search.indexOf('packed') > -1 ? '_packed' : '') + '.js"><' + '/script>');
+        </script>
+        <script type="text/javascript">
+            function initialize() {
+              var sWest = new google.maps.LatLng(59.917699, 10.731909);
+              var nEast = new google.maps.LatLng(59.911524, 10.742981);
+              var bounds = new google.maps.LatLngBounds(sWest, nEast);
+              
+              var mapOpts = {
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+              };
+              var mapCanvas = new google.maps.Map(document.getElementById("map_canvas"), mapOpts);
+              mapCanvas.fitBounds(bounds);
+              
+              // add control
+              var snapOpts = {
+                map: mapCanvas
+              };
+              var snapShotControl = new SnapShotControl(snapOpts);
+              
+              var rectangle = new google.maps.Rectangle({
+                map: mapCanvas,
+                fillColor: "#0000FF",
+                fillOpacity: 0.6,
+                strokeColor: "#FF0000",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                bounds: bounds
+              });
+            }
+        </script>
+    </head>
+    <body onload="initialize()">
+        <div id="map_canvas" style="width: 400px; height: 400px">
+        </div>
+    </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no" />
+        <meta http-equiv="content" content="text/html; charset=UTF-8" />
+        <title>SnapShotControl 2.0: Poly Styles</title>
+        <!--
+        <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+        -->
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry">
+        </script>
+        <script type="text/javascript">
+            document.write('<script type="text/javascript" src="../src/snapshotcontrol' + (document.location.search.indexOf('packed') > -1 ? '_packed' : '') + '.js"><' + '/script>');
+        </script>
+        <script type="text/javascript">
+            function initialize() {
+              var cLatLng = new google.maps.LatLng(35.676148, 139.74479);
+              var mapOpts = {
+                zoom: 1,
+                center: cLatLng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+              };
+              var mapCanvas = new google.maps.Map(document.getElementById("map_canvas"), mapOpts);
+              
+              // add control
+              var snapOpts = {
+                map: mapCanvas
+              };
+              var snapShotControl = new SnapShotControl(snapOpts);
+              
+              // add line
+              var latlngs = new google.maps.MVCArray();
+              latlngs.push(new google.maps.LatLng(35.676148, 139.74479));
+              latlngs.push(new google.maps.LatLng(25.48295117535531, 118.30078125));
+              latlngs.push(new google.maps.LatLng(-32.39851580247401, 135.17578125));
+              latlngs.push(new google.maps.LatLng(37.43997405227057, -121.9921875));
+              
+              var polygon = new google.maps.Polygon({
+                path: latlngs,
+                strokeColor: "#FF0000",
+                strokeOpacity: 0.5,
+                strokeWeight: 10,
+                fillColor: "#008000",
+                fillOpacity: 0.5,
+                map: mapCanvas
+              });
+              
+            }
+        </script>
+    </head>
+    <body onload="initialize()">
+        <div id="map_canvas" style="width: 400px; height: 400px">
+        </div>
+    </body>
+</html>
